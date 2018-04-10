@@ -14,6 +14,7 @@ import * as _ from 'lodash';
 
 import {NavLink} from 'react-router-dom';
 import ProductList from './../components/ProductList';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 class ThemeDetail extends Component {
     constructor(props) {
@@ -109,7 +110,7 @@ class ThemeDetail extends Component {
                             <div className="description">
                                 <h2>MÔ TẢ WEBSITE</h2>
                                 <div className="post-excerpt">
-                                    {post_excerpt}
+                                    { ReactHtmlParser(post_excerpt) }
                                 </div>
                             </div>
 
@@ -139,7 +140,7 @@ class ThemeDetail extends Component {
 
                             <div className="clearfix"></div>
                             <hr className="line-full-width clearfix"/>
-                            <div className="post-detail">{post_detail}</div>
+                            <div className="post-detail">{  ReactHtmlParser(post_detail) }</div>
 
                             <div className="clearfix"></div>
                             <hr className="line-full-width clearfix"/>
