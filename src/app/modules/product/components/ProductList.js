@@ -9,34 +9,33 @@ class ProductList extends Component {
     }
 
     handleAddCart(product_id, product) {
-        // //let cart = Array(_.create(product_id, product));
+        let cart = {};
+        cart[product_id] = product;
 
-
-        // // console.log(product_id);
-        // // let cart  = {
-        // //     product_id : product
-        // // }
-        // console.log(...product);
+        localStorage.setItem('cart', cart);
     }
 
-    load(posts) {
+    load(posts, col = '') {
         if (_.isEmpty(posts)) 
             return false;
-        
+
+        var className   = 'item';
+        if(col.length != 0) className = `item ${col}`;
+
         return posts.map((post, key) => {
             let post_id     = post.post_id;
             let post_title  = post.post_title;
-            let link_detail = `chi-tiet/${post.post_slug}/${post_id}`;
+            let link_detail = `/chi-tiet/${post.post_slug}/${post_id}`;
 
             let set_cart    = {
                 'post_id'           : post_id,
                 'post_title'        : post_title,
                 'post_thumbnail'    : post.post_thumb,
-                'post_quantity'     : 0        
+                'post_quantity'     : 1        
             }
 
             return (
-                <div className="item" key={key}>
+                <div className={ className } key={key}>
                     <div className="block2">
                         <div className="block2-img wrap-pic-w of-hidden pos-relative">
                             <img src={post.post_thumb} alt={post_title} title={post_title}/>
@@ -64,10 +63,11 @@ class ProductList extends Component {
     }
 
     render() {
-        const posts = this.props.posts;
+        const { posts, col } = this.props;
+
         return (                     
             <React.Fragment>
-                { this.load(posts) }
+                { this.load(posts, col) }
             </React.Fragment>   
         );
     }

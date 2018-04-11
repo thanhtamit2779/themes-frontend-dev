@@ -12,12 +12,13 @@ class Banner extends Component {
       if(_.isEmpty(terms)) return false;
 
       return terms.map( (term, key) => {
+          let link  = `/danh-muc/${term.term_slug}/${term.term_id}`;
           return (
             <Col xs={6} sm={4} className="m-l-r-auto" key={key}>
               <div className="block1 hov-img-zoom pos-relative m-b-30">
                 <img src={term.term_thumbnail} alt={term.term_name} />
                 <div className="block1-wrapbtn w-size2">
-                  <a href={term.term_thumbnail} className="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+                  <a href={ link } className="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
                     {term.term_name}
                   </a>
                 </div>

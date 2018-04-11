@@ -21,3 +21,23 @@ export const fetch_theme_detail_request = (theme_id) => {
         });
     }
 }
+
+/*======================================================================
+| FETCH THEME IN CATEGORY
+| =======================================================================
+*/
+export const get_theme_category = (theme_category) => {
+    return {
+        type : TYPE.FETCH_THEME_CATEGORY,
+        theme_category
+    }
+}
+
+export const fetch_theme_category = (data) => {
+    console.log(data);
+    return dispatch => {
+        return request_api('post/index', data).then(function(response) {
+            dispatch(get_theme_category(response.data.data)); 
+        });
+    }
+}

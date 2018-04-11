@@ -1,1 +1,2 @@
-export const FETCH_THEME_DETAIL      = 'FETCH_THEME_DETAIL';
+export const FETCH_THEME_DETAIL           = 'FETCH_THEME_DETAIL';
+export const FETCH_THEME_CATEGORY         = 'FETCH_THEME_CATEGORY';

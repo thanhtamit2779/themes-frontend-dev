@@ -20,6 +20,7 @@ import home_theme_featured from './app/modules/homepage/reducers/home_theme_feat
 import home_theme_latest from './app/modules/homepage/reducers/home_theme_latest';
 import home_theme_viewed from './app/modules/homepage/reducers/home_theme_viewed';
 import theme_detail from './app/modules/product/reducers/theme_detail';
+import theme_category from './app/modules/product/reducers/theme_category';
 
 /* INCLUDE */
 import FrontendBootstrap from './app/modules/FrontendBootstrap';
@@ -30,7 +31,8 @@ const rootReducer = combineReducers({
     home_theme_featured,
     home_theme_latest,
     home_theme_viewed,
-    theme_detail
+    theme_detail,
+    theme_category
 });
 
 const loggerMiddleware = createLogger();
