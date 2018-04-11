@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {NavLink} from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 import * as _ from 'lodash';
 
@@ -18,9 +18,9 @@ class Banner extends Component {
               <div className="block1 hov-img-zoom pos-relative m-b-30">
                 <img src={term.term_thumbnail} alt={term.term_name} />
                 <div className="block1-wrapbtn w-size2">
-                  <a href={ link } className="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+                  <NavLink to={ link } className="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
                     {term.term_name}
-                  </a>
+                  </NavLink>
                 </div>
               </div>
             </Col>
