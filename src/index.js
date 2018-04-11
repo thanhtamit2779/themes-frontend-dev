@@ -6,6 +6,9 @@ import {
     Route
 } from 'react-router-dom';
 
+import createBrowserHistory from 'history/createBrowserHistory'
+const history = createBrowserHistory()
+
 // REACT - REDUX
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -49,8 +52,8 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router>
-            <Route component={FrontendBootstrap} path="/"/>
+        <Router history={history}>
+            <FrontendBootstrap/>
         </Router>
     </Provider>, 
     document.getElementById('root')
