@@ -12,8 +12,8 @@ class Content extends Component {
       <React.Fragment>
           <Switch>
             <Route path='/' component={IndexPage} exact/>
-            <Route path='/chi-tiet/:slug/:id' component={ThemeDetailPage}/>
-            <Route path='/danh-muc/:slug/:id' component={ThemeCategoryPage}/>
+            <Route path='/chi-tiet/:slug/:id' component={ThemeDetailPage} exact/>
+            <Route path='/danh-muc/:slug/:id' component={ThemeCategoryPage} exact/>
           </Switch>  
       </React.Fragment>
     );
