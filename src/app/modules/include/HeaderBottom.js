@@ -39,7 +39,7 @@ class HeaderBottom extends Component {
         {/* Header Icon */}
         <div className="header-icons">
           <a href="#" className="header-wrapicon1 dis-block">
-            <img src={ require('./../../../vendor/images/icons/icon-header-01.png') } className="header-icon1" alt="ICON" />
+            <i class="fa fa-search"/>
           </a>
           <span className="linedivide1" />
           <div className="header-wrapicon2">
