@@ -73,13 +73,13 @@ class ThemeDetail extends Component {
                 <Grid>
                     <Row>
                         <Col sm={12} xs={12}>
-                            <div className="bread-crumb">
-                                <NavLink to='/'>
+                            <div className="bread-crumb bgwhite flex-w p-t-30">
+                                <NavLink to='/'  className="s-text17">
                                     Trang chủ
                                     <i className="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"/>
                                 </NavLink>
 
-                                <NavLink to={link_term}>
+                                <NavLink to={link_term}  className="s-text17">
                                     {term_name}
                                     <i className="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"/>
                                 </NavLink>
@@ -90,7 +90,7 @@ class ThemeDetail extends Component {
                             </div>
                         </Col>
                     </Row>
-                    <Row>
+                    <Row className="p-t-30 p-b-25">
                         <Col sm={8} xs={12}>
                             <div className="review-image">
                                 <img
