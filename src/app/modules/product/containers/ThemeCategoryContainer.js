@@ -91,8 +91,8 @@ class ThemeCategoryContainer extends Component {
                 <Grid>
                     <Row>
                         <Col sm={12} xs={12}>
-                            <div className="bread-crumb">
-                                <NavLink to='/'>
+                            <div className="bread-crumb bgwhite flex-w p-t-30">
+                                <NavLink to='/' className="s-text17">
                                     Trang chủ
                                     <i className="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"/>
                                 </NavLink>
@@ -103,13 +103,12 @@ class ThemeCategoryContainer extends Component {
                             </div>
                         </Col>
                     </Row>
-                    
-                    <Row>
+                </Grid>  
+                <Grid>  
+                    <Row className="p-t-30 p-b-25">
                         <ProductList posts={posts} col="col-sm-3 col-xs-6"/>
                     </Row>
-
                     { pagination }
-
                 </Grid>
             </section>
         )
