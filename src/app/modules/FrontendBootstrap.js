@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
 /* INCLUDE */
-import Header from './include/Header';
-import Content from './include/Content';
-import Footer from './include/Footer';
+import Header from './include/components/Header';
+import Content from './include/components/Content';
+import Footer from './include/components/Footer';
+import SidebarLeft from './include/components/SidebarLeft';
+
+import { Sidebar, Segment, Button, Menu, Image, Icon } from 'semantic-ui-react';
 
 /* CSS */
 import './../../vendor/plugins/bootstrap/css/bootstrap.min.css';
@@ -17,19 +20,46 @@ import './../../vendor/css/util.css';
 import './../../vendor/plugins/own-carousel/assets/owl.carousel.min.css';
 import './../../vendor/plugins/own-carousel/assets/owl.theme.default.min.css';
 import './../../vendor/css/main.css';
+import 'semantic-ui-css/semantic.min.css';
 
 /* JS */
-import './../../vendor/plugins/bootstrap/js/bootstrap.min.js';
+//import './../../vendor/plugins/bootstrap/js/bootstrap.min.js';
 import './../../vendor/plugins/animsition/js/animsition.min.js';
 import './../../vendor/plugins/own-carousel/owl.carousel.min.js';
 import './../../vendor/js/main.js';
 
 class FrontendBootstrap extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = { visible: false };
+    this.toggleVisibility = this.toggleVisibility.bind(this);
+  }
+
+  toggleVisibility() {
+    this.setState({ visible: !this.state.visible });
+  }
+
   render() {
+    const { visible } = this.state;
+
     return (
       <React.Fragment>
-        <Header/>
-        <Content/>
+        <Header toggleVisibility={this.toggleVisibility} stateVisible={visible} />
+
+        <section className="content">
+          <Sidebar.Pushable>
+            <Sidebar  animation='push' width='thin' visible={visible} icon='labeled' vertical="true" inverted="true">
+              <SidebarLeft/>
+            </Sidebar>
+
+            <Sidebar.Pusher>
+              <Content/> 
+            </Sidebar.Pusher>
+          </Sidebar.Pushable>
+        </section>
+
         <Footer/>
       </React.Fragment>
     )
