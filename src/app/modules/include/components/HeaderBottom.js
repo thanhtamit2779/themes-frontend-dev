@@ -4,17 +4,31 @@ import { Route, NavLink } from 'react-router-dom' ;
 import menu from './../../config/menu';
 import { Sidebar, Segment, Icon , Menu} from 'semantic-ui-react';
 
+import * as _ from 'lodash';
+
+let localStorageCarts = JSON.parse(localStorage.getItem('carts'));
+let carts = (_.isEmpty(localStorageCarts))
+            ? []
+            : localStorageCarts;
+
 class HeaderBottom extends Component {
   constructor(props) {
     super(props);
-
-    this.state = { visible: false };
-    this.toggleVisibility = this.toggleVisibility.bind(this);
+    this.calTotalCart = this.calTotalCart.bind(this);
   }
 
-  toggleVisibility() {
-    this.setState({ visible: !this.state.visible });
-  }
+  calTotalCart(carts) {
+    if (_.isEmpty(carts)) return 0;
+
+    var quantity            = 0;
+    var total               = 0;
+    carts.map((cart, key) => {
+        quantity        = cart.quantity;
+        total           += quantity;
+    });
+
+    return total;
+}
 
   menu(menu) {
     if(menu.length === 0) return false;
@@ -37,25 +51,6 @@ class HeaderBottom extends Component {
 
     return (
       <React.Fragment>
-          {/* { (visible == true) ?  
-          <Sidebar.Pushable as={Segment}>
-              <Sidebar as={Menu} animation='overlay' width='thin' visible={visible} icon='labeled' vertical inverted>
-                <Menu.Item name='home'>
-                  <Icon name='home' />
-                  Home
-                </Menu.Item>
-                <Menu.Item name='gamepad'>
-                  <Icon name='gamepad' />
-                  Games
-                </Menu.Item>
-                <Menu.Item name='camera'>
-                  <Icon name='camera' />
-                  Channels
-                </Menu.Item>
-              </Sidebar>
-          </Sidebar.Pushable> : ''
-          } */}
-
           <div className="wrap_header">
             {/* Logo */}
             <a href="index.html" className="logo">
@@ -76,9 +71,10 @@ class HeaderBottom extends Component {
               </button>
               <span className="linedivide1" />
               <div className="header-wrapicon2">
-                <img src={ require('./../../../../vendor/images/icons/icon-header-02.png') } className="header-icon1 js-show-header-dropdown" alt="ICON" />
-                <span className="header-icons-noti">0</span>
-                {/* Header cart noti */}
+                <NavLink to='/gio-hang'>
+                  <img src={ require('./../../../../vendor/images/icons/icon-header-02.png') } className="header-icon1 js-show-header-dropdown" alt="ICON" />
+                  <span className="header-icons-noti">{ this.calTotalCart(carts) }</span>
+                </NavLink>  
               </div>
             </div>
           </div>
