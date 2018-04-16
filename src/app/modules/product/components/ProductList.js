@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
 import * as _ from 'lodash';
 
-const localStorageCarts = JSON.parse(localStorage.getItem('shoppingCart'));
+const localStorageCarts = JSON.parse(localStorage.getItem('carts'));
 const carts             = ( _.isEmpty(localStorageCarts) ) ? [] : localStorageCarts;
 
 class ProductList extends Component {
@@ -37,7 +37,7 @@ class ProductList extends Component {
                 quantity
             });
         }
-        localStorage.setItem('shoppingCart', JSON.stringify(carts));
+        localStorage.setItem('carts', JSON.stringify(carts));
     }
 
 
