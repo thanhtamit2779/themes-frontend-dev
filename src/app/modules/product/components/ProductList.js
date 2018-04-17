@@ -1,45 +1,28 @@
 import React, {Component} from 'react';
 
+import { connect } from 'react-redux';
+
 import { NavLink } from 'react-router-dom';
 import * as _ from 'lodash';
 
-const localStorageCarts = JSON.parse(localStorage.getItem('carts'));
-const carts             = ( _.isEmpty(localStorageCarts) ) ? [] : localStorageCarts;
+import { addCart } from './../../cart/actions/index';
+
+import 'react-notifications/lib/notifications.css';
+import { NotificationManager } from 'react-notifications';
 
 class ProductList extends Component {
     constructor(props) {
         super(props);
-
-        this.findProductInCart = this.findProductInCart.bind(this);
     }
 
-    findProductInCart(cart, product) {
-        var index = -1;
-        if (cart.length > 0) {
-            for (var i = 0; i < cart.length; i++) {
-                if (cart[i].product.post_id === product.post_id) {
-                    index = i;
-                    break;
-                }
-            }
-        }
-        return index;
+    componentWillReceiveProps(nextProps) {
+        let message = nextProps.notification;
     }
 
     handleAddCart(product) {
-        let index = this.findProductInCart(carts, product);
-        if (index !== -1) {
-            carts[index].quantity += 1;
-        } else {
-            let quantity = 1;
-            carts.push({
-                product,
-                quantity
-            });
-        }
-        localStorage.setItem('carts', JSON.stringify(carts));
+        let { addCart } = this.props;
+        addCart(product);
     }
-
 
     load(posts, col = '') {
         if (_.isEmpty(posts)) 
@@ -53,12 +36,6 @@ class ProductList extends Component {
             let post_title  = post.post_title;
             let post_thumb  = post.post_thumb;
             let link_detail = `/chi-tiet/${post.post_slug}/${post_id}`;
-
-            let set_cart    = {
-                'post_id'           : post_id,
-                'post_title'        : post_title,
-                'post_thumbnail'    : post_thumb  
-            }
 
             return (
                 <div className={ className } key={key}>
@@ -99,4 +76,19 @@ class ProductList extends Component {
     }
 }
 
-export default ProductList;
+const mapStateToProps = (state, ownProps) => {
+    return { 
+        items         : state.cart.items,
+        notification  : state.cart.notification
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        addCart: (product) => {
+            dispatch(addCart(product));
+        },
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);

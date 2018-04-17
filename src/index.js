@@ -25,6 +25,7 @@ import home_theme_viewed from './app/modules/homepage/reducers/home_theme_viewed
 import theme_detail from './app/modules/product/reducers/theme_detail';
 import theme_category from './app/modules/product/reducers/theme_category';
 import categories from './app/modules/include/reducers/categories';
+import cart from './app/modules/cart/reducers/index';
 
 /* INCLUDE */
 import FrontendBootstrap from './app/modules/FrontendBootstrap';
@@ -36,7 +37,8 @@ const rootReducer = combineReducers({
     home_theme_viewed,
     theme_detail,
     theme_category,
-    categories
+    categories,
+    cart
 });
 
 const loggerMiddleware = createLogger();
@@ -45,8 +47,7 @@ const store = createStore(
     rootReducer, 
     composeWithDevTools(
         applyMiddleware(
-            thunk,
-            loggerMiddleware
+            thunk
         )
     )
 );
