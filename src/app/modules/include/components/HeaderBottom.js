@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 
+import { connect } from 'react-redux';
+
 import { Route, NavLink } from 'react-router-dom' ;
 import menu from './../../config/menu';
 import { Sidebar, Segment, Icon , Menu} from 'semantic-ui-react';
 
 import * as _ from 'lodash';
 
-let localStorageCarts = JSON.parse(localStorage.getItem('carts'));
-let carts = (_.isEmpty(localStorageCarts))
-            ? []
-            : localStorageCarts;
+import { listCart } from './../../cart/actions/index';
 
 class HeaderBottom extends Component {
   constructor(props) {
     super(props);
     this.calTotalCart = this.calTotalCart.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.listCart();
   }
 
   calTotalCart(carts) {
@@ -28,7 +31,7 @@ class HeaderBottom extends Component {
     });
 
     return total;
-}
+  }
 
   menu(menu) {
     if(menu.length === 0) return false;
@@ -48,6 +51,7 @@ class HeaderBottom extends Component {
   
   render() {
     const { toggleVisibility, stateVisible } = this.props;
+    const carts          = this.props.items;
 
     return (
       <React.Fragment>
@@ -83,4 +87,19 @@ class HeaderBottom extends Component {
   }
 }
 
-export default HeaderBottom;
+const mapStateToProps = (state, ownProps) => {
+  return { 
+      items         : state.cart.items,
+      notification  : state.cart.notification
+  }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+      listCart: () => {
+          dispatch(listCart());
+      },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderBottom);
