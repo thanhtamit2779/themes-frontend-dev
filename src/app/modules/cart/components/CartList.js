@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 
 import * as _ from 'lodash';
-import {Image, Table, Input} from 'semantic-ui-react';
+import { Image, Table, Input} from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
 class CartList extends Component {
     constructor(props) {
         super(props);
 
-        this.loadCart = this.loadCart.bind(this);
+        this.loadCart          = this.loadCart.bind(this);
         this.handleChangeEvent = this.handleChangeEvent.bind(this);
     }
 
@@ -49,6 +49,11 @@ class CartList extends Component {
                         <Input type="number" value={quantity} onChange={ this.handleChangeEvent } name="quantity"/>
                     </Table.Cell>
                     <Table.Cell>{ quantity * post_price }</Table.Cell>
+                    <Table.Cell>
+                        <NavLink to="#">
+                            <i className="fa fa-trash-o" aria-hidden="true"/>
+                        </NavLink>
+                    </Table.Cell>
                 </Table.Row>
             );
         });

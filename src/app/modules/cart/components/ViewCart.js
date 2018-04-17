@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
+
+import { connect } from 'react-redux';
+
 import {NavLink} from 'react-router-dom';
 
 import * as _ from 'lodash';
 import {Table} from 'semantic-ui-react';
+
+import { listCart } from './../actions/index';
 
 import {
     Row,
@@ -16,16 +21,16 @@ import {
 
 import CartList from './CartList';
 
-let localStorageCarts = JSON.parse(localStorage.getItem('carts'));
-let carts = (_.isEmpty(localStorageCarts))
-            ? []
-            : localStorageCarts;
-
 class ViewCart extends Component {
     constructor(props) {
         super(props);
 
         this.calTotalCart = this.calTotalCart.bind(this);
+        this.calTotalPrice = this.calTotalPrice.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.listCart();
     }
 
     calTotalCart(carts) {
@@ -57,6 +62,8 @@ class ViewCart extends Component {
     }
 
     render() {
+        const carts          = this.props.items;
+                
         return (
             <section className="main">
                 <Grid>
@@ -107,4 +114,19 @@ class ViewCart extends Component {
     }
 }
 
-export default ViewCart;
+const mapStateToProps = (state, ownProps) => {
+    return { 
+        items         : state.cart.items,
+        notification  : state.cart.notification
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        listCart: () => {
+            dispatch(listCart());
+        },
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewCart);
