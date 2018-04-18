@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 
-import ThemeFeaturedContainer from './ThemeFeaturedContainer';
-import ThemeLatestContainer from './ThemeLatestContainer';
-import ThemeViewedContainer from './ThemeViewedContainer';
+import ProductFeaturedContainer from './ProductFeaturedContainer';
+import ProductLatestContainer from './ProductLatestContainer';
+import ProductViewedContainer from './ProductViewedContainer';
 
-class ThemeContainer extends Component {
+class ProductContainer extends Component {
     constructor(props) {
         super(props);
     }
@@ -21,7 +21,7 @@ class ThemeContainer extends Component {
                         </div>
                         <div className="sec-content">
                             <div className="owl-stage owl-carousel owl-carousel-latest owl-theme">
-                                <ThemeLatestContainer/>
+                                <ProductLatestContainer/>
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@ class ThemeContainer extends Component {
                         </div>
                         <div className="sec-content">
                             <div className="owl-stage owl-carousel owl-carousel-featured owl-theme">
-                                <ThemeFeaturedContainer/>
+                                <ProductFeaturedContainer/>
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@ class ThemeContainer extends Component {
                         </div>
                         <div className="sec-content">
                             <div className="owl-stage owl-carousel owl-carousel-viewed owl-theme">
-                                <ThemeViewedContainer/>
+                                <ProductViewedContainer/>
                             </div>
                         </div>
                     </div>
@@ -59,4 +59,4 @@ class ThemeContainer extends Component {
     }
 }
 
-export default ThemeContainer;
+export default ProductContainer;

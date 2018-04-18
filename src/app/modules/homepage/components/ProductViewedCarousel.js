@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 
 import ProductList from './../../product/components/ProductList';
 
-class ThemeFeaturedCarousel extends Component {
+class ProductViewedCarousel extends Component {
     constructor(props) {
         super(props);
     }
 
     componentDidUpdate() {
-        jQuery('.owl-carousel-featured').owlCarousel({
+        jQuery('.owl-carousel-viewed').owlCarousel({
             loop: true,
             responsiveClass: true,
             responsive: {
@@ -27,8 +27,7 @@ class ThemeFeaturedCarousel extends Component {
                     margin: 30,
                     autoplay: true,
                     dots: false,
-                    lazyLoad: true,
-                    autoplayTimeout: 3000
+                    lazyLoad: true
                 }
             }
         })
@@ -36,12 +35,12 @@ class ThemeFeaturedCarousel extends Component {
 
     render() {
         const posts = this.props.items.posts;
-        return (
+        return (                     
             <React.Fragment>
                 <ProductList posts={posts}/>
-            </React.Fragment>
+            </React.Fragment>   
         );
     }
 }
 
-export default ThemeFeaturedCarousel;
+export default ProductViewedCarousel;

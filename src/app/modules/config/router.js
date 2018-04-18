@@ -4,7 +4,7 @@ import React from 'react';
 import IndexPage from './../homepage/IndexPage';
 
 // THEME DETAIL
-import ThemeDetailPage from './../product/ThemeDetailPage';
+import ProductDetailPage from './../product/ProductDetailPage';
 
 const ROUTER = [
     {
@@ -14,15 +14,15 @@ const ROUTER = [
     },
     {
         path        : '/chi-tiet/:slug/:id',
-        component   : () => <ThemeDetailPage/>,
+        component   : () => <ProductDetailPage/>,
         exact       : 0
     }
     // {
     //     path        : '/chi-tiet/:slug/:id',
-    //     component   : () => <ThemeDetailPage/>,
+    //     component   : () => <ProductDetailPage/>,
     //     exact       : 0
     // }
 ];
-{/* <Route path='/chi-tiet/:slug/:id' component={ThemeDetailPage}/> */}
+{/* <Route path='/chi-tiet/:slug/:id' component={ProductDetailPage}/> */}
 
 export default ROUTER ;

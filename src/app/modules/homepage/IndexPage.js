@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
 import BannerContainer from './containers/BannerContainer';
-import ThemeContainer from './containers/ThemeContainer';
+import ProductContainer from './containers/ProductContainer';
 
 class IndexPage extends Component {
     render() {
       return (
         <React.Fragment>
           <BannerContainer/>
-          <ThemeContainer/>
+          <ProductContainer/>
         </React.Fragment>
       );
     }

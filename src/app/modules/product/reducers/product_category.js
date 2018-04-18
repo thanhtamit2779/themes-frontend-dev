@@ -1,16 +1,16 @@
 import * as TYPE from './../contants/action_type';
 
-const theme_category = (state = {
+const product_category = (state = {
         items           : []
     }, action) => {
     switch (action.type) {
-        case TYPE.FETCH_THEME_CATEGORY :
+        case TYPE.FETCH_PRODUCT_CATEGORY :
             return Object.assign({}, state, {
-                items        : action.theme_category
+                items        : action.product_category
             });
       default:
         return state;
     }
 }
 
-export default theme_category;
+export default product_category;

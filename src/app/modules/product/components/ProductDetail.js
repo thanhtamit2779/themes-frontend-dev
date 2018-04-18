@@ -16,7 +16,7 @@ import {NavLink} from 'react-router-dom';
 import ProductList from './../components/ProductList';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
-class ThemeDetail extends Component {
+class ProductDetail extends Component {
     constructor(props) {
         super(props);
     }
@@ -156,4 +156,4 @@ class ThemeDetail extends Component {
     }
 }
 
-export default ThemeDetail;
+export default ProductDetail;

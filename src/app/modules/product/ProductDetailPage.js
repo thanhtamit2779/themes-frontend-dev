@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 
-import ThemeDetailContainer from './containers/ThemeDetailContainer';
+import ProductDetailContainer from './containers/ProductDetailContainer';
 
-class ThemeDetailPage extends Component {
+class ProductDetailPage extends Component {
 
   constructor(props) {
     super(props);
@@ -12,10 +12,10 @@ class ThemeDetailPage extends Component {
     let id = this.props.match.params.id;
     return (
       <React.Fragment>
-        <ThemeDetailContainer id={id}/>
+        <ProductDetailContainer id={id}/>
       </React.Fragment>
     );
   }
 }
 
-export default ThemeDetailPage;
+export default ProductDetailPage;

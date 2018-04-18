@@ -1,14 +1,14 @@
 import * as TYPE from './../contants/action_type';
 
-const home_theme_featured = (state = {
+const home_product_featured = (state = {
         items           : [],
         notification    : {}
     }, action) => {
     switch (action.type) {
-        case TYPE.FETCH_THEME_FEATURED:
+        case TYPE.FETCH_PRODUCT_FEATURED:
             return Object.assign({}, state, {
                 notification: {},
-                items       : action.theme_featured,
+                items       : action.product_featured,
             });
             
         default:
@@ -16,4 +16,4 @@ const home_theme_featured = (state = {
     }
 }
 
-export default home_theme_featured;
+export default home_product_featured;

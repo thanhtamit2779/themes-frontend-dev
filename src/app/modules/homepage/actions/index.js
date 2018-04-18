@@ -26,17 +26,17 @@ export const fetch_banners = (data) => {
 | FETCH THEME FEATURED 
 | =======================================================================
 */
-export const get_theme_featured = theme_featured => {
+export const get_product_featured = product_featured => {
     return {
-      type: TYPE.FETCH_THEME_FEATURED,
-      theme_featured
+      type: TYPE.FETCH_PRODUCT_FEATURED,
+      product_featured
     }
 }
 
-export const fetch_theme_featured = (data) => {
+export const fetch_product_featured = (data) => {
     return (dispatch) => {
         return request_api('post/index', data).then(response => {
-            dispatch(get_theme_featured(response.data.data));
+            dispatch(get_product_featured(response.data.data));
         });
     }  
 }
@@ -45,17 +45,17 @@ export const fetch_theme_featured = (data) => {
 | FETCH THEME LATEST 
 | =======================================================================
 */
-export const get_theme_latest = theme_latest => {
+export const get_product_latest = product_latest => {
     return {
-      type: TYPE.FETCH_THEME_LATEST,
-      theme_latest
+      type: TYPE.FETCH_PRODUCT_LATEST,
+      product_latest
     }
 }
 
-export const fetch_theme_latest = (data) => {
+export const fetch_product_latest = (data) => {
     return (dispatch) => {
         return request_api('post/index', data).then(response => {
-            dispatch(get_theme_latest(response.data.data));
+            dispatch(get_product_latest(response.data.data));
         });
     }  
 }
@@ -64,17 +64,17 @@ export const fetch_theme_latest = (data) => {
 | FETCH THEME VIEWED
 | =======================================================================
 */
-export const get_theme_viewed = theme_viewed => {
+export const get_product_viewed = product_viewed => {
     return {
-      type: TYPE.FETCH_THEME_VIEWED,
-      theme_viewed
+      type: TYPE.FETCH_PRODUCT_VIEWED,
+      product_viewed
     }
 }
 
-export const fetch_theme_viewed = (data) => {
+export const fetch_product_viewed = (data) => {
     return (dispatch) => {
         return request_api('post/index', data).then(response => {
-            dispatch(get_theme_viewed(response.data.data));
+            dispatch(get_product_viewed(response.data.data));
         });
     }  
 }

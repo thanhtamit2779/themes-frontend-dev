@@ -1,16 +1,16 @@
 import * as TYPE from './../contants/action_type';
 
-const theme_detail = (state = {
-        theme_detail           : {}
+const product_detail = (state = {
+        product_detail           : {}
     }, action) => {
     switch (action.type) {
-        case TYPE.FETCH_THEME_DETAIL:
+        case TYPE.FETCH_PRODUCT_DETAIL:
             return Object.assign({}, state, {
-                theme_detail        : action.theme_detail,
+                product_detail        : action.product_detail,
             });
       default:
         return state;
     }
 }
 
-export default theme_detail;
+export default product_detail;

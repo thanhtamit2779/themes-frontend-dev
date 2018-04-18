@@ -3,17 +3,17 @@ import React, { Component } from 'react';
 // REDUX
 import { connect } from 'react-redux';
 
-import { fetch_theme_featured } from './../actions/index';
-import ThemeFeaturedCarousel from './../components/ThemeFeaturedCarousel';
+import { fetch_product_featured } from './../actions/index';
+import ProductFeaturedCarousel from './../components/ProductFeaturedCarousel';
 
-class ThemeFeaturedContainer extends Component {
+class ProductFeaturedContainer extends Component {
     constructor(props) {
       super(props);
     }
 
     // FETCH API
     componentDidMount() {
-      this.props.fetch_theme_featured({
+      this.props.fetch_product_featured({
         total_record  : 12,
         post_status   : 'publish',
         type          : 'featured',
@@ -26,23 +26,23 @@ class ThemeFeaturedContainer extends Component {
     render() {
       let { items } = this.props;
       return (
-        <ThemeFeaturedCarousel items={ items } />
+        <ProductFeaturedCarousel items={ items } />
       )
     }
 }
   
 const mapStateToProps = (state, ownProps) => {
   return {
-    items         : state.home_theme_featured.items,
-    notification  : state.home_theme_featured.notification
+    items         : state.home_product_featured.items,
+    notification  : state.home_product_featured.notification
   }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    fetch_theme_featured : (data) => {
-      dispatch(fetch_theme_featured(data));
+    fetch_product_featured : (data) => {
+      dispatch(fetch_product_featured(data));
     }
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(ThemeFeaturedContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductFeaturedContainer);

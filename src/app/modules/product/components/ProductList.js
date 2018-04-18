@@ -13,6 +13,9 @@ import { NotificationManager } from 'react-notifications';
 class ProductList extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            isAdded: false
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -22,6 +25,16 @@ class ProductList extends Component {
     handleAddCart(product) {
         let { addCart } = this.props;
         addCart(product);
+
+        this.setState({
+            isAdded: true
+        }, function(){
+            setTimeout(() => {
+                this.setState({
+                    isAdded: false
+                });
+            }, 2000);
+        });
     }
 
     load(posts, col = '') {
@@ -44,10 +57,15 @@ class ProductList extends Component {
                             <img src={post.post_thumb} alt={post_title} title={post_title}/>
                             <div className="block2-overlay trans-0-4">
                                 <div className="block2-btn-addcart w-size1 trans-0-4">
-                                    {/* Button */}
-                                    <button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onClick={ () => this.handleAddCart(post) }>
-                                        ĐẶT MUA
-                                    </button>
+                                    { (this.state.isAdded == false) ? 
+                                        <button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onClick={ () => this.handleAddCart(post) }>
+                                            Thêm vào giỏ
+                                        </button>
+                                        :
+                                        <button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 is-added">
+                                            Đang thêm...
+                                        </button>
+                                    }
                                 </div>
                             </div>
                         </div>

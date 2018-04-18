@@ -13,3 +13,9 @@ export const listCart = () => {
     }
 }
 
+export const deleteCart = (product_id) => {
+    return {
+        type : TYPE.DELETE_CART,
+        product_id
+    }
+}

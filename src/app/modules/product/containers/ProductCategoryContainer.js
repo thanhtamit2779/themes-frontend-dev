@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { fetch_theme_category } from './../actions/index';
+import { fetch_product_category } from './../actions/index';
 import * as _ from 'lodash';
 
 import {
@@ -19,7 +19,7 @@ const total_record = 8;
 const page         = 1;
 const activePage   = 1;
 
-class ThemeCategoryContainer extends Component {
+class ProductCategoryContainer extends Component {
     constructor(props) {
         super(props);
         this.handlePagination = this.handlePagination.bind(this);
@@ -32,7 +32,7 @@ class ThemeCategoryContainer extends Component {
 
     componentDidMount() {
         let cate_id = this.props.id;
-        this.props.fetch_theme_category({
+        this.props.fetch_product_category({
             cate_id,
             total_record,
             page
@@ -45,7 +45,7 @@ class ThemeCategoryContainer extends Component {
         this.setState(
             _.merge(
                 { activePage: page }, 
-                this.props.fetch_theme_category({
+                this.props.fetch_product_category({
                     total_record,
                     page ,
                     cate_id
@@ -117,16 +117,16 @@ class ThemeCategoryContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return { 
-        items : state.theme_category.items
+        items : state.product_category.items
     }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        fetch_theme_category: (data) => {
-            dispatch(fetch_theme_category(data));
+        fetch_product_category: (data) => {
+            dispatch(fetch_product_category(data));
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ThemeCategoryContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCategoryContainer);

@@ -3,17 +3,17 @@ import React, { Component } from 'react';
 // REDUX
 import { connect } from 'react-redux';
 
-import { fetch_theme_viewed } from './../actions/index';
-import ThemeViewedCarousel from './../components/ThemeViewedCarousel';
+import { fetch_product_viewed } from './../actions/index';
+import ProductViewedCarousel from './../components/ProductViewedCarousel';
 
-class ThemeViewedContainer extends Component {
+class ProductViewedContainer extends Component {
     constructor(props) {
       super(props);
     }
 
     // FETCH API
     componentDidMount() {
-      this.props.fetch_theme_viewed({
+      this.props.fetch_product_viewed({
         total_record  : 12,
         post_status   : 'publish',
         type          : 'viewed',
@@ -26,23 +26,23 @@ class ThemeViewedContainer extends Component {
     render() {
       let { items } = this.props;
       return (
-        <ThemeViewedCarousel items={ items } />
+        <ProductViewedCarousel items={ items } />
       )
     }
 }
   
 const mapStateToProps = (state, ownProps) => {
   return {
-    items         : state.home_theme_viewed.items,
-    notification  : state.home_theme_viewed.notification
+    items         : state.home_product_viewed.items,
+    notification  : state.home_product_viewed.notification
   }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    fetch_theme_viewed : (data) => {
-      dispatch(fetch_theme_viewed(data));
+    fetch_product_viewed : (data) => {
+      dispatch(fetch_product_viewed(data));
     }
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(ThemeViewedContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductViewedContainer);

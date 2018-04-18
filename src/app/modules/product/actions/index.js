@@ -7,17 +7,17 @@ import request_api from './../../../helper/api';
 | FETCH THEME DETAIL
 | =======================================================================
 */
-export const get_theme_detail = theme_detail => {
+export const get_product_detail = product_detail => {
     return {
-        type : TYPE.FETCH_THEME_DETAIL,
-        theme_detail
+        type : TYPE.FETCH_PRODUCT_DETAIL,
+        product_detail
     }
 }
 
-export const fetch_theme_detail_request = (theme_id) => {
+export const fetch_product_detail_request = (product_id) => {
     return (dispatch) => {
-        return request_api(`post/detail/${theme_id}`, {}, 'put').then(function(response) {
-            dispatch(get_theme_detail(response.data.data)); 
+        return request_api(`post/detail/${product_id}`, {}, 'put').then(function(response) {
+            dispatch(get_product_detail(response.data.data)); 
         });
     }
 }
@@ -26,18 +26,17 @@ export const fetch_theme_detail_request = (theme_id) => {
 | FETCH THEME IN CATEGORY
 | =======================================================================
 */
-export const get_theme_category = (theme_category) => {
+export const get_product_category = (product_category) => {
     return {
-        type : TYPE.FETCH_THEME_CATEGORY,
-        theme_category
+        type : TYPE.FETCH_PRODUCT_CATEGORY,
+        product_category
     }
 }
 
-export const fetch_theme_category = (data) => {
-    console.log(data);
+export const fetch_product_category = (data) => {
     return dispatch => {
         return request_api('post/index', data).then(function(response) {
-            dispatch(get_theme_category(response.data.data)); 
+            dispatch(get_product_category(response.data.data)); 
         });
     }
 }

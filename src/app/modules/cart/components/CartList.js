@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 
+import { connect } from 'react-redux';
+
 import * as _ from 'lodash';
 import { Image, Table, Input} from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
+
+import { deleteCart } from './../actions/index';
 
 class CartList extends Component {
     constructor(props) {
@@ -10,19 +14,26 @@ class CartList extends Component {
 
         this.loadCart          = this.loadCart.bind(this);
         this.handleChangeEvent = this.handleChangeEvent.bind(this);
+        this.handleDeleteCart  = this.handleDeleteCart.bind(this);
     }
 
     handleChangeEvent(event) {
         let target = event.target;
-        let name = target.name;
-        let value = target.value;
+        let name   = target.name;
+        let value  = target.value;
 
         this.setState({[name]: value});
+    }
+
+    handleDeleteCart(product_id) {
+        this.props.handleDeleteCart(product_id);
     }
 
     loadCart(carts) {
         if (_.isEmpty(carts)) 
             return false;
+
+        const handleDeleteCart = this.props;
         
         return carts.map((cart, key) => {
             let post_thumbnail  = _.get(cart.product, 'post_thumb');
@@ -33,6 +44,8 @@ class CartList extends Component {
             let post_id         = _.get(cart.product, 'post_id');
             let post_slug       = _.get(cart.product, 'post_slug');
             let link_detail     = `/chi-tiet/${post_slug}/${post_id}`;
+
+            let name            = `quantity[${post_id}]`;
 
             return (
                 <Table.Row key={key}>
@@ -46,11 +59,11 @@ class CartList extends Component {
                         {post_price}
                     </Table.Cell>
                     <Table.Cell>
-                        <Input type="number" value={quantity} onChange={ this.handleChangeEvent } name="quantity"/>
+                        <Input type="number" ref="quantity" value={quantity} onChange={ this.handleChangeEvent } name={name} />
                     </Table.Cell>
                     <Table.Cell>{ quantity * post_price }</Table.Cell>
                     <Table.Cell>
-                        <NavLink to="#">
+                        <NavLink to="#" onClick={ () => this.handleDeleteCart(post_id) }>
                             <i className="fa fa-trash-o" aria-hidden="true"/>
                         </NavLink>
                     </Table.Cell>
@@ -60,11 +73,11 @@ class CartList extends Component {
     }
 
     render() {
-        let {carts} = this.props;
+        let { carts } = this.props;
 
         return (
             <React.Fragment>
-                {this.loadCart(carts)}
+                { this.loadCart(carts) }
             </React.Fragment>
         );
 

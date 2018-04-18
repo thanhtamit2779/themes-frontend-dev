@@ -19,11 +19,11 @@ import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import home_banner from './app/modules/homepage/reducers/home_banner';
-import home_theme_featured from './app/modules/homepage/reducers/home_theme_featured';
-import home_theme_latest from './app/modules/homepage/reducers/home_theme_latest';
-import home_theme_viewed from './app/modules/homepage/reducers/home_theme_viewed';
-import theme_detail from './app/modules/product/reducers/theme_detail';
-import theme_category from './app/modules/product/reducers/theme_category';
+import home_product_featured from './app/modules/homepage/reducers/home_product_featured';
+import home_product_latest from './app/modules/homepage/reducers/home_product_latest';
+import home_product_viewed from './app/modules/homepage/reducers/home_product_viewed';
+import product_detail from './app/modules/product/reducers/product_detail';
+import product_category from './app/modules/product/reducers/product_category';
 import categories from './app/modules/include/reducers/categories';
 import cart from './app/modules/cart/reducers/index';
 
@@ -32,11 +32,11 @@ import FrontendBootstrap from './app/modules/FrontendBootstrap';
 
 const rootReducer = combineReducers({
     home_banner,
-    home_theme_featured,
-    home_theme_latest,
-    home_theme_viewed,
-    theme_detail,
-    theme_category,
+    home_product_featured,
+    home_product_latest,
+    home_product_viewed,
+    product_detail,
+    product_category,
     categories,
     cart
 });

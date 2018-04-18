@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import ProductList from './../../product/components/ProductList';
 
-class ThemeLatestCarousel extends Component {
+class ProductLatestCarousel extends Component {
     constructor(props) {
         super(props);
     }
@@ -43,4 +43,4 @@ class ThemeLatestCarousel extends Component {
     }
 }
 
-export default ThemeLatestCarousel;
+export default ProductLatestCarousel;

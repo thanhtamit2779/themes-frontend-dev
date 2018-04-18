@@ -1,4 +1,7 @@
+import React, {Component} from 'react';
 import * as TYPE from './../contants/action_type';
+
+import * as _ from 'lodash';
 
 var localStorageCarts = JSON.parse(localStorage.getItem('carts'));
 var carts             = localStorageCarts ? localStorageCarts : [];
@@ -45,7 +48,35 @@ const cart = (state = data , action) => {
             return Object.assign({}, state, {
                 items: carts,
                 notification    : 'Giỏ hàng'
-            });   
+            }); 
+            
+        case TYPE.DELETE_CART:
+
+            let product_id = action.product_id;
+
+            if( _.isEmpty(carts) ) { 
+                return Object.assign({}, state, {
+                    items: carts,
+                    notification    : ''
+                });
+            } 
+
+            carts.map( (cart, key) => {
+                var product = cart.product;
+                let cart_id = _.get(product, 'post_id');
+
+                if(cart_id == product_id) {
+                    carts.splice(key, 1);
+                    var product_name = _.get(product, 'post_title');
+                    localStorage.setItem('carts', JSON.stringify(carts));
+                }
+            });
+
+            return Object.assign({}, state, {
+                items: carts,
+                notification    : `Sản phẩm đã được xóa ra khỏi giỏ hàng`
+            });
+            
         default:
             return state;
     }
