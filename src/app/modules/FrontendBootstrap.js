@@ -21,9 +21,9 @@ import './../../vendor/plugins/own-carousel/assets/owl.carousel.min.css';
 import './../../vendor/plugins/own-carousel/assets/owl.theme.default.min.css';
 import './../../vendor/css/main.css';
 import 'semantic-ui-css/semantic.min.css';
+import './../../vendor/css/styles.scss';
 
 /* JS */
-//import './../../vendor/plugins/bootstrap/js/bootstrap.min.js';
 import './../../vendor/plugins/animsition/js/animsition.min.js';
 import './../../vendor/plugins/own-carousel/owl.carousel.min.js';
 import './../../vendor/js/main.js';

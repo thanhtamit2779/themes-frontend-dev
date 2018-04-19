@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-
 import { connect } from 'react-redux';
-
 import { NavLink } from 'react-router-dom';
+
 import * as _ from 'lodash';
 
 import { addCart } from './../../cart/actions/index';
-
 import 'react-notifications/lib/notifications.css';
 import { NotificationManager } from 'react-notifications';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import NumberFormat from 'react-number-format';
 
 class ProductList extends Component {
     constructor(props) {
@@ -41,13 +41,14 @@ class ProductList extends Component {
         if (_.isEmpty(posts)) 
             return false;
 
-        var className   = 'item';
-        if(col.length != 0) className = `item ${col}`;
+        var className   = 'item product';
+        if(col.length != 0) className = `item product ${col}`;
 
         return posts.map((post, key) => {
             let post_id     = post.post_id;
             let post_title  = post.post_title;
             let post_thumb  = post.post_thumb;
+            let post_detail = post.post_detail;
             let link_detail = `/chi-tiet/${post.post_slug}/${post_id}`;
 
             return (
@@ -67,14 +68,17 @@ class ProductList extends Component {
                                         </button>
                                     }
                                 </div>
+                                <div className="product-quickview">
+                                    { ReactHtmlParser(post_detail) }
+                                </div>
                             </div>
                         </div>
                         <div className="block2-txt p-t-20 text-center">
-                            <NavLink to={link_detail} className="text-center block2-name dis-block s-text3 p-b-5">
+                            <NavLink to={link_detail} className="text-center block2-name dis-block s-text3 p-b-5 product-name">
                                 {post_title}
                             </NavLink>
-                            <span className="block2-price m-text6 p-r-5">
-                                {post.post_price} VNĐ
+                            <span className="block2-price m-text6 p-r-5 product-price">
+                                <NumberFormat value={post.post_price} displayType={'text'} thousandSeparator={true}/> VNĐ
                             </span>
                         </div>
                     </div>

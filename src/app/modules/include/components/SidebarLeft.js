@@ -125,8 +125,9 @@ class SidebarLeft extends Component {
           )}/> 
         </ul>
 
+        <hr className="sb-separator"/>
         <span className="label label-category">Danh mục</span>
-        <ul className="list-category">
+        <ul className="list-category list-category-second">
           { this.categories(categories) }
         </ul>
       
