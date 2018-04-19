@@ -51,7 +51,7 @@ class FrontendBootstrap extends Component {
         <section className="content">
           <Sidebar.Pushable>
             <Sidebar  animation='push' width='thin' visible={visible} icon='labeled' vertical="true" inverted="true">
-              <SidebarLeft/>
+              <SidebarLeft toggleVisibility={this.toggleVisibility} stateVisible={visible}/>
             </Sidebar>
 
             <Sidebar.Pusher>
