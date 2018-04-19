@@ -26,17 +26,17 @@ export const fetch_product_detail_request = (product_id) => {
 | FETCH THEME IN CATEGORY
 | =======================================================================
 */
-export const get_product_category = (product_category) => {
+export const get_product = (product) => {
     return {
-        type : TYPE.FETCH_PRODUCT_CATEGORY,
-        product_category
+        type : TYPE.FETCH_PRODUCT,
+        product
     }
 }
 
-export const fetch_product_category = (data) => {
+export const fetch_product = (data) => {
     return dispatch => {
         return request_api('post/index', data).then(function(response) {
-            dispatch(get_product_category(response.data.data)); 
+            dispatch(get_product(response.data.data)); 
         });
     }
 }

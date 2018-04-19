@@ -19,7 +19,7 @@ const total_record = 8;
 const page         = 1;
 const activePage   = 1;
 
-class ProductCategoryContainer extends Component {
+class ProductTypeContainer extends Component {
     constructor(props) {
         super(props);
         this.handlePagination = this.handlePagination.bind(this);
@@ -31,9 +31,19 @@ class ProductCategoryContainer extends Component {
     }
 
     componentDidMount() {
-        let cate_id = this.props.id;
+        var type = this.props.type;
+        if(type == 'moi-nhat') {
+            type = 'latest';
+        }
+        else if(type == 'noi-bat') {
+            type = 'featured';
+        }
+        else if(type == 'xem-nhieu'){
+            type = 'viewed';
+        }
+
         this.props.fetch_product({
-            cate_id,
+            type,
             total_record,
             page
         });
@@ -41,23 +51,44 @@ class ProductCategoryContainer extends Component {
 
     // PAGINATION
     handlePagination(page) {
-        let cate_id = this.props.id;
+        var type = this.props.type;
+        if(type == 'moi-nhat') {
+            type = 'latest';
+        }
+        else if(type == 'noi-bat') {
+            type = 'featured';
+        }
+        else if(type == 'xem-nhieu'){
+            type = 'viewed';
+        }
+
         this.setState(
             _.merge(
                 { activePage: page }, 
                 this.props.fetch_product({
                     total_record,
                     page ,
-                    cate_id
+                    type
                 })
             ) 
         );
     } 
 
     render() {
-        let { items } = this.props;
+        let { items, type } = this.props;
         let posts     = items.posts;
         let { total } = items;
+
+        var breadcrumb = '';
+        if(type == 'moi-nhat') {
+            breadcrumb = 'Mới nhất';
+        }
+        else if(type == 'noi-bat') {
+            breadcrumb = 'Nổi bật';
+        }
+        else if(type == 'xem-nhieu'){
+            breadcrumb = 'Xem nhiều';
+        }
 
         var pagination = '';
         if(items.total_page > 1) {
@@ -97,8 +128,13 @@ class ProductCategoryContainer extends Component {
                                     <i className="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"/>
                                 </NavLink>
 
+                                <NavLink to='/san-pham' className="s-text17">
+                                    Sản phẩm
+                                    <i className="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"/>
+                                </NavLink>
+
                                 <span className="s-text17">
-                                    { term_name }
+                                    { breadcrumb }
                                 </span>
                             </div>
                         </Col>
@@ -129,4 +165,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductCategoryContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductTypeContainer);

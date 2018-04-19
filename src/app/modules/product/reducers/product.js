@@ -1,16 +1,16 @@
 import * as TYPE from './../contants/action_type';
 
-const product_category = (state = {
+const product = (state = {
         items           : []
     }, action) => {
     switch (action.type) {
-        case TYPE.FETCH_PRODUCT_CATEGORY :
+        case TYPE.FETCH_PRODUCT :
             return Object.assign({}, state, {
-                items        : action.product_category
+                items        : action.product
             });
       default:
         return state;
     }
 }
 
-export default product_category;
+export default product;
