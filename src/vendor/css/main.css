@@ -2498,3 +2498,11 @@ input.num-product::-webkit-inner-spin-button {
   text-decoration: none;
 }
 
+.sidebar {
+  width: 270px !important;
+}
+
+.ui.visible.thin.left.sidebar~.fixed, .ui.visible.thin.left.sidebar~.pusher {
+  -webkit-transform: translate3d(270px,0,0) !important;
+  transform: translate3d(270px,0,0) !important;
+}
