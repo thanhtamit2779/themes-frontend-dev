@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import { Route, NavLink } from 'react-router-dom' ;
 import menu from './../../config/menu';
-import { Sidebar, Segment, Icon , Menu} from 'semantic-ui-react';
 
 import * as _ from 'lodash';
 
@@ -36,16 +35,25 @@ class HeaderBottom extends Component {
   menu(menu) {
     if(menu.length === 0) return false;
 
+    var { toggleVisibility, stateVisible } = this.props;
+
     return menu.map( (item, key) => {
-      return (
-        <Route key={key} path={item.path} children={({ match }) => (
+      return (item.click == false) ?
+            <Route key={key} path={item.path} children={({ match }) => (
+              <li className={ match ? 'nav-item active' : 'nav-item' }>
+                <NavLink to={item.path} className={ match ? 'nav-link active' : 'nav-link' }>
+                  <i className={item.icon} /> {item.name}
+                </NavLink>
+              </li>
+            )}/> 
+         :
+         <Route key={key} path={item.path} children={({ match }) => (
           <li className={ match ? 'nav-item active' : 'nav-item' }>
-            <NavLink to={item.path} className={ match ? 'nav-link active' : 'nav-link' }>
+            <NavLink to={item.path} className={ match ? 'nav-link active' : 'nav-link' } onClick={ () => toggleVisibility() }>
               <i className={item.icon} /> {item.name}
             </NavLink>
           </li>
-        )}/> 
-      );
+        )}/>
     });
   }
   
