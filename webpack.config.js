@@ -4,11 +4,18 @@ var DashboardPlugin   = require('webpack-dashboard/plugin');
 var path              = require("path");
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const extractSass = new ExtractTextPlugin({
+  filename: "[name].[contenthash].css",
+  disable: process.env.NODE_ENV === "development"
+});
+
+
+
 module.exports = {
   resolve: {
     alias: {},
 
-    extensions: ['.js', '.jsx', '.scss', 'css']
+    extensions: ['.js', '.jsx', '.scss', '.css']
   },
 
   entry: './src/index.js',
@@ -31,14 +38,11 @@ module.exports = {
 
   externals: {},
 
-  devtool: 'eval-source-map',
-
+  //devtool: 'eval-source-map',
+  devtool: "source-map",
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin({
-      filename: 'build.min.css',
-      allChunks: true,
-    }),
+    extractSass,
     new HtmlWebpackPlugin({
       template: './src/index.html',
       files: {
@@ -58,8 +62,17 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader?importLoaders=1', 'sass-loader'],
-        exclude: ['node_modules']
+        use: [{
+          loader: "style-loader"
+      }, {
+          loader: "css-loader", options: {
+              sourceMap: true
+          }
+      }, {
+          loader: "sass-loader", options: {
+              sourceMap: true
+          }
+      }]
       },
       { 
         test: /\.js$/, 
