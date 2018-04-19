@@ -23,7 +23,7 @@ import home_product_featured from './app/modules/homepage/reducers/home_product_
 import home_product_latest from './app/modules/homepage/reducers/home_product_latest';
 import home_product_viewed from './app/modules/homepage/reducers/home_product_viewed';
 import product_detail from './app/modules/product/reducers/product_detail';
-import product_category from './app/modules/product/reducers/product_category';
+import product from './app/modules/product/reducers/product';
 import categories from './app/modules/include/reducers/categories';
 import cart from './app/modules/cart/reducers/index';
 
@@ -36,7 +36,7 @@ const rootReducer = combineReducers({
     home_product_latest,
     home_product_viewed,
     product_detail,
-    product_category,
+    product,
     categories,
     cart
 });
