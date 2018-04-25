@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import {NavLink} from 'react-router-dom';
 
 import {
     Row,
@@ -11,14 +13,24 @@ import {
 } from 'react-bootstrap';
 
 import * as _ from 'lodash';
-
-import {NavLink} from 'react-router-dom';
+import NumberFormat from 'react-number-format';
+import { addCart } from './../../cart/actions/index';
+import 'react-notifications/lib/notifications.css';
+import { NotificationManager } from 'react-notifications';
 import ProductList from './../components/ProductList';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 class ProductDetail extends Component {
     constructor(props) {
         super(props);
+        
+        this.state = {
+            isAdded: false
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        let message = nextProps.notification;
     }
 
     componentDidUpdate() {
@@ -38,13 +50,28 @@ class ProductDetail extends Component {
               items: 3,
               nav: true,
               loop: true,
-              margin: 30,
+              margin: 15,
               autoplay: true,
               dots: false,
               lazyLoad: true
             }
           }
         })
+    }
+
+    handleAddCart(product) {
+        let { addCart } = this.props;
+        addCart(product);
+
+        this.setState({
+            isAdded: true
+        }, function(){
+            setTimeout(() => {
+                this.setState({
+                    isAdded: false
+                });
+            }, 2000);
+        });
     }
 
     render() {
@@ -74,17 +101,17 @@ class ProductDetail extends Component {
                     <Row>
                         <Col sm={12} xs={12}>
                             <div className="bread-crumb bgwhite flex-w p-t-30">
-                                <NavLink to='/'  className="s-text17">
+                                <NavLink to='/'>
                                     Trang chủ
                                     <i className="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"/>
                                 </NavLink>
 
-                                <NavLink to={link_term}  className="s-text17">
+                                <NavLink to={link_term}>
                                     {term_name}
                                     <i className="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"/>
                                 </NavLink>
 
-                                <span className="s-text17">
+                                <span>
                                     {post_title}
                                 </span>
                             </div>
@@ -130,23 +157,30 @@ class ProductDetail extends Component {
                         <Col sm={4} xs={12}>
                             <h1>{post_title}</h1>
 
-                            <p>Mẫu website: <span>#{post_id}</span></p>
-                            <p>Giá: <span>{post_price}</span></p>
+                            <p>Mẫu website: <b><span>#{post_id}</span></b></p>
+                            <p>Giá: <b><span><NumberFormat value={post_price} displayType={'text'} thousandSeparator={true}/> VNĐ</span></b></p>
 
                             <FormGroup className="btn-addcart-demo">
-                                <button className="btn btn-xs btn-success pull-left">Đặt mua</button>
+                                { (this.state.isAdded == false) ? 
+                                        <button className="btn btn-xs btn-success pull-left" onClick={ () => this.handleAddCart(post) }>
+                                            Thêm vào giỏ
+                                        </button>
+                                        :
+                                        <button className="btn btn-xs btn-success pull-left is-added">
+                                            Đang thêm...
+                                        </button>
+                                }
                                 <a className="btn btn-xs btn-success pull-right" href={post_link} target="_blank">Xem thực tế</a>
                             </FormGroup>
 
                             <div className="clearfix"></div>
                             <hr className="line-full-width clearfix"/>
-                            <div className="post-detail">{  ReactHtmlParser(post_detail) }</div>
+                            <div className="detail">{  ReactHtmlParser(post_detail) }</div>
 
-                            <div className="clearfix"></div>
-                            <hr className="line-full-width clearfix"/>
+                            <div className="clearfix"></div>                         
                             <div className="hotline">
                                 <h4>TƯ VẤN THIẾT KẾ</h4>
-                                <p>Hotline : <a href="tel:01234567899">01234567899</a></p>
+                                <p>Hotline : <a href="tel:01234567899">0123.456.7899</a></p>
                             </div>
                         </Col>
                     </Row>
@@ -156,4 +190,19 @@ class ProductDetail extends Component {
     }
 }
 
-export default ProductDetail;
+const mapStateToProps = (state, ownProps) => {
+    return { 
+        items         : state.cart.items,
+        notification  : state.cart.notification
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        addCart: (product) => {
+            dispatch(addCart(product));
+        },
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail);
