@@ -39,6 +39,12 @@ class FrontendBootstrap extends Component {
 
   toggleVisibility() {
     this.setState({ visible: !this.state.visible });
+    
+    this.setState({ visible: !this.state.visible }, function(){
+        setTimeout(() => {
+            this.setState({ visible: false });
+        }, 1000 * 15);
+    });
   }
 
   render() {
