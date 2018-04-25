@@ -93,7 +93,7 @@ class SidebarLeft extends Component {
           </FormGroup>
           <FormGroup>
             <Col sm={12}>
-              <Button type='submit' fluid>Tìm kiếm</Button>
+              <Button type='submit' fluid className="btn-search">Tìm kiếm</Button>
             </Col>
           </FormGroup>
         </Form>
