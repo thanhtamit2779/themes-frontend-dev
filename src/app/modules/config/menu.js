@@ -18,7 +18,13 @@ const menu = [
         'click' : true,
     },
     {
-        'icon' : 'fa fa-product-hunt',
+        'icon' : 'fa fa-money',
+        'name' : 'Thanh toán',
+        'path' : '/thanh-toan',
+        'click' : true,
+    },
+    {
+        'icon' : 'fa fa-gift',
         'name' : 'Khuyến mãi',
         'path' : '/khuyen-mai',
         'click' : true,
