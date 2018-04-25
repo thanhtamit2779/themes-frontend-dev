@@ -36,7 +36,7 @@ class FrontendBootstrap extends Component {
     this.state = { visible: false };
     this.toggleVisibility = this.toggleVisibility.bind(this);
   }
-
+  
   toggleVisibility() {
     this.setState({ visible: !this.state.visible });
     
@@ -66,7 +66,7 @@ class FrontendBootstrap extends Component {
           </Sidebar.Pushable>
         </section>
 
-        <Footer/>
+        <Footer toggleVisibility={this.toggleVisibility} stateVisible={visible}/>
       </React.Fragment>
     )
   }
