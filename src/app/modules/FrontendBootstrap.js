@@ -27,6 +27,7 @@ import './../../vendor/css/styles.scss';
 /* JS */
 import './../../vendor/plugins/animsition/js/animsition.min.js';
 import './../../vendor/plugins/own-carousel/owl.carousel.min.js';
+import './../../vendor/js/smoothscroll.js';
 import './../../vendor/js/main.js';
 
 class FrontendBootstrap extends Component {
