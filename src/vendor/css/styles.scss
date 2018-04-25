@@ -1,3 +1,7 @@
+p {
+    color: #333333;
+}
+
 .sidebar {
     box-shadow: none !important;
     -moz-box-shadow: none !important;
@@ -75,6 +79,14 @@
         font-weight: 400;
         margin-bottom: 10px
     }
+
+    button.btn-search {
+        transition: text-indent 0.2s;
+        &:hover {
+            background: #00bcd4; 
+            color: #fff;
+        }
+    }
 }
 
 .hov1:hover {
@@ -86,6 +98,8 @@
 }
 
 .product {
+    margin-bottom: 30px;
+
     .product-quickview {
         display: none;
         color: #fff;
@@ -123,5 +137,184 @@
 
     .block2-overlay:hover .product-quickview {
         display: block;
+    }
+}
+
+.block-view-all {
+    margin-top: 30px;
+
+    .text-view-all {
+        font-family: "Roboto", sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        color: #fff;
+        background: #00bcd4; 
+        text-transform: capitalize;
+        padding: .5rem 3rem;
+        &:hover {
+            color: #fff;
+            background: #00bcd4;  
+        }
+    }
+}
+
+.main {
+    .review-image {
+        position: relative;
+        min-height: 500px;
+    
+        img.desktop-image {
+            padding: 5px;
+            border: 1px #CCC solid;
+            z-index: 1;
+        }
+    
+        .phone {
+            background: url('../images/iphone.png') no-repeat;
+            width: 253px;
+            height: 522px;
+            position: absolute;
+            right: 0;
+            top:20%;
+            z-index: 2;
+            padding-top: 64px;
+            padding-left: 15px;
+        }
+    }
+
+    .description {
+        margin-top: 50px;
+        overflow: hidden;
+    }
+
+    .detail {
+        ul li {
+            font-size: 16px;
+            background: transparent url(../images/chitiet.png) no-repeat scroll 5px 40%;
+            padding: 4px 10px 7px 39px;
+        }      
+    }
+
+    .hotline {
+        border: 1px dashed rgba(60,56,56,.37) !important;
+        text-align: center;
+        margin-top: 30px;
+        padding: 10px 0px;
+
+        h4 {
+            text-transform: uppercase;
+            font-size: 22px;
+            text-align: center;
+            color: #26608d;
+        }
+
+        p {
+            font-size: 17px;
+
+            a {
+                font-size: 22px;
+                color: #ff7544;
+                font-weight: 700;
+            }
+        }
+    }
+
+    .btn-addcart-demo {
+        button, a {
+            border-radius: 0;
+            width: 46%;
+            padding: 7.5px;
+            text-transform: uppercase;
+            font-size: 17px;
+            color: #fff;
+            cursor: pointer;
+            background: #00bcd4; 
+            border:none
+        }
+    }
+
+}
+
+hr.line-full-width {
+    border-top: 1px dashed rgba(60,56,56,.37) !important;
+    margin: 20px 0px
+}
+
+#view-cart {
+
+    table thead th {
+        border: none;
+    }
+
+    .thumbnail {
+        width: 120px;
+        height: auto;
+    }
+
+    .name, a {
+        font-weight: 7000;
+        color: #000;
+        text-transform: uppercase;
+    }
+
+    .quantity input {
+        border: 1px solid #ccc !important;
+        border-radius: 0;
+        padding: 5px 0px;
+        text-align: center;
+    }
+}
+
+.info-cart {
+    border:none;
+    border-radius: 0;
+    padding: 25px 15px;
+    background-color: #f5f5f5;  
+
+    a, a.active {
+        border:none;
+        border-radius: 0;
+        background: #00bcd4 !important;
+    }
+}
+
+.bread-crumb {
+    a {
+        color: #000;
+        text-transform: uppercase;
+        font-size: 15px;
+
+        &:hover {
+            color: #00bcd4
+        }
+    }
+
+    span {
+        text-transform:uppercase;
+        line-height: 1.7;
+        font-size: 15px;
+    }
+}
+
+ul.pagination {
+    margin-bottom: 30px;
+
+    li a {
+        border-radius: 0;
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+        margin:0px 2.5px;
+        color: #000 !important;
+    }
+
+    li:focus {
+        outline: none !important;
+    }
+
+    li.active a {
+        box-shadow: none;
+        color:#fff !important;
     }
 }
