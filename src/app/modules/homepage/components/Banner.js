@@ -30,7 +30,7 @@ class Banner extends Component {
 
     render() {
       return (
-        <section className="banner bgwhite p-t-40 p-b-40">
+        <section className="banner bgwhite">
           <div className="container">
             <Row>
               { this.load(this.props.items.terms) }
