@@ -124,7 +124,7 @@ class Footer extends React.Component {
 
   $(window).on('scroll',function(){
 
-      if($(this).scrollTop() >= posWrapHeader) {
+      if($(this).scrollTop() >= 10) {
           $('.header1').addClass('fixed-header');
           $(header).css('top',-posWrapHeader); 
 
@@ -152,40 +152,37 @@ class Footer extends React.Component {
   /*[ Show menu mobile ]
   =====================================================.======*/
   $('.btn-show-menu-mobile').off('click').on('click', function() {
-      //$(this).removeClass('btn-show-menu-mobile');
       $(this).toggleClass('is-active');
-      //$('.wrap-side-menu').show();
       $('.wrap-side-menu').slideToggle();
   });
 
-  // $('.menu-close').on('click', function() {
-  //   console.log(123);
-  //   // $(this).removeClass('is-active close-menu');
-  //   // $(this).addClass('btn-show-menu-mobile');
-  //   // $('.wrap-side-menu').hide();
-  // });
+  var arrowMainMenu = $('.arrow-main-menu');
 
-  // var arrowMainMenu = $('.arrow-main-menu');
+  for(var i=0; i<arrowMainMenu.length; i++){
+      $(arrowMainMenu[i]).on('click', function(){
+          $(this).parent().find('.sub-menu').slideToggle();
+          $(this).toggleClass('turn-arrow');
+      })
+  }
 
-  // for(var i=0; i<arrowMainMenu.length; i++){
-  //     $(arrowMainMenu[i]).on('click', function(){
-  //         $(this).parent().find('.sub-menu').slideToggle();
-  //         $(this).toggleClass('turn-arrow');
-  //     })
-  // }
+  $(window).resize(function(){
+      if($(window).width() >= 992){
+          if($('.wrap-side-menu').css('display') == 'block'){
+              $('.wrap-side-menu').css('display','none');
+              $('.btn-show-menu-mobile').toggleClass('is-active');
+          }
+          if($('.sub-menu').css('display') == 'block'){
+              $('.sub-menu').css('display','none');
+              $('.arrow-main-menu').removeClass('turn-arrow');
+          }
+      }
 
-  // $(window).resize(function(){
-  //     if($(window).width() >= 992){
-  //         if($('.wrap-side-menu').css('display') == 'block'){
-  //             $('.wrap-side-menu').css('display','none');
-  //             $('.btn-show-menu-mobile').toggleClass('is-active');
-  //         }
-  //         if($('.sub-menu').css('display') == 'block'){
-  //             $('.sub-menu').css('display','none');
-  //             $('.arrow-main-menu').removeClass('turn-arrow');
-  //         }
-  //     }
-  // });
+      if($(window).width() < 767){
+        $(window).on('scroll',function(){
+          return false;
+        });
+      }
+  });
 
   /*[ remove top noti ]
   ===========================================================*/
