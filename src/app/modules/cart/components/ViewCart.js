@@ -6,6 +6,7 @@ import {NavLink} from 'react-router-dom';
 
 import * as _ from 'lodash';
 import {Table, Message} from 'semantic-ui-react';
+import NumberFormat from 'react-number-format';
 import { listCart, deleteCart } from './../actions/index';
 
 import {
@@ -86,12 +87,12 @@ class ViewCart extends Component {
                     <Row>
                         <Col sm={12} xs={12}>
                             <div className="bread-crumb bgwhite flex-w p-t-30">
-                                <NavLink to='/' className="s-text17">
+                                <NavLink to='/'>
                                     Trang chủ
                                     <i className="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"/>
                                 </NavLink>
 
-                                <span className="s-text17">
+                                <span>
                                     Giỏ hàng
                                 </span>
                             </div>
@@ -125,11 +126,13 @@ class ViewCart extends Component {
                         <Col sm={4} xs={12}>
                             { _.isEmpty(carts) ? '' : 
                             <div className="info-cart card">
-                                <h2>Thông tin đơn hàng</h2>
-                                <p><span className="pull-left">Tạm tính ({ this.calTotalCart(carts)} sản phẩm)</span><span className="pull-right">{ this.calTotalPrice(carts)}</span></p>
-                                <p><span className="pull-left">Phí giao hàng</span><span className="pull-right">27,000 đ</span></p>
-                                <p><span className="pull-left">Tổng cộng</span><span className="pull-right">{ this.calTotalPrice(carts) + 27000}</span></p>
-                                <NavLink to='/thanh-toan' className="s-text17 checkout">Tiến hành thanh toán</NavLink>
+                                <h2>THÔNG TIN ĐƠN HÀNG</h2>
+                                <p><span className="pull-left">Tạm tính ({ this.calTotalCart(carts)} sản phẩm)</span><span className="pull-right"><NumberFormat value={ this.calTotalPrice(carts) } displayType={'text'} thousandSeparator={true}/> VNĐ</span></p>
+                                <p><span className="pull-left">Tổng cộng</span><span className="pull-right"><NumberFormat value={ this.calTotalPrice(carts) } displayType={'text'} thousandSeparator={true}/> VNĐ</span></p>
+                                <div className="text-center">
+                                    <NavLink to="/" className="btn btn-xs btn-success pull-left">Tiếp tục mua hàng</NavLink>
+                                    <NavLink to='/thanh-toan' className="btn btn-xs btn-success pull-right">Thanh toán</NavLink>
+                                </div>
                             </div>
                             }
                         </Col>

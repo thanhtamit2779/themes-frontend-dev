@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as _ from 'lodash';
 import { Image, Table, Input} from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
+import NumberFormat from 'react-number-format';
 
 import { deleteCart } from './../actions/index';
 
@@ -50,18 +51,20 @@ class CartList extends Component {
             return (
                 <Table.Row key={key}>
                     <Table.Cell>
-                        <NavLink to={link_detail}><Image src={post_thumbnail} size='small'/></NavLink>
+                        <NavLink to={link_detail}><Image src={post_thumbnail} size='small' className="thumbnail"/></NavLink>
                     </Table.Cell>
                     <Table.Cell>
-                        <NavLink to={link_detail}>{post_title}</NavLink>
+                        <NavLink to={link_detail} className="name">{post_title}</NavLink>
                     </Table.Cell>
                     <Table.Cell>
-                        {post_price}
+                        <NumberFormat value={post_price} displayType={'text'} thousandSeparator={true}/>
                     </Table.Cell>
                     <Table.Cell>
-                        <Input type="number" ref="quantity" value={quantity} onChange={ this.handleChangeEvent } name={name} />
+                        <Input type="number" ref="quantity" className="quantity" value={quantity} onChange={ this.handleChangeEvent } name={name} />
                     </Table.Cell>
-                    <Table.Cell>{ quantity * post_price }</Table.Cell>
+                    <Table.Cell>
+                        <NumberFormat value={ quantity * post_price } displayType={'text'} thousandSeparator={true}/> 
+                    </Table.Cell>
                     <Table.Cell>
                         <NavLink to="#" onClick={ () => this.handleDeleteCart(post_id) }>
                             <i className="fa fa-trash-o" aria-hidden="true"/>
