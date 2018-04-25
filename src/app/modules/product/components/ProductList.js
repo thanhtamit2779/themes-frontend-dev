@@ -59,11 +59,11 @@ class ProductList extends Component {
                             <div className="block2-overlay trans-0-4">
                                 <div className="block2-btn-addcart w-size1 trans-0-4">
                                     { (this.state.isAdded == false) ? 
-                                        <button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onClick={ () => this.handleAddCart(post) }>
-                                            Thêm vào giỏ
+                                        <button className="flex-c-m size1 btn-add-cart bo-rad-23 hov1 s-text1 trans-0-4" onClick={ () => this.handleAddCart(post) }>
+                                            <i className="fa fa-shopping-cart" aria-hidden="true"/> Thêm vào giỏ
                                         </button>
                                         :
-                                        <button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 is-added">
+                                        <button className="flex-c-m size1 btn-add-cart bo-rad-23 hov1 s-text1 trans-0-4 is-added">
                                             Đang thêm...
                                         </button>
                                     }
