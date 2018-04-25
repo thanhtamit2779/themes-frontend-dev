@@ -123,17 +123,17 @@ class ProductTypeContainer extends Component {
                     <Row>
                         <Col sm={12} xs={12}>
                             <div className="bread-crumb bgwhite flex-w p-t-30">
-                                <NavLink to='/' className="s-text17">
+                                <NavLink to='/'>
                                     Trang chủ
                                     <i className="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"/>
                                 </NavLink>
 
-                                <NavLink to='/san-pham' className="s-text17">
+                                <NavLink to='/san-pham'>
                                     Sản phẩm
                                     <i className="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"/>
                                 </NavLink>
 
-                                <span className="s-text17">
+                                <span>
                                     { breadcrumb }
                                 </span>
                             </div>
