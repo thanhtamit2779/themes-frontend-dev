@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 // COMPONENT
-import HeaderTop    from './HeaderTop';
-import HeaderBottom from './HeaderBottom'
+import HeaderDesktop    from './HeaderDesktop';
+import HeaderMobile    from './HeaderMobile';
 
 // CSS
 class Header extends Component {
@@ -13,9 +13,9 @@ class Header extends Component {
     return (
       <header className="header1">
         <div className="container-menu-header">
-            <HeaderTop/>
-            <HeaderBottom toggleVisibility={toggleVisibility} stateVisible={stateVisible}/>
+          <HeaderDesktop toggleVisibility={toggleVisibility} stateVisible={stateVisible}/>
         </div>
+        <HeaderMobile toggleVisibility={toggleVisibility} stateVisible={stateVisible}/>
       </header>
     );
   }

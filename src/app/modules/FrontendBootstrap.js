@@ -16,6 +16,7 @@ import './../../vendor/fonts/Linearicons-Free-v1.0.0/icon-font.min.css';
 import './../../vendor/fonts/elegant-font/html-css/style.css';
 import './../../vendor/plugins/animate/animate.css';
 import './../../vendor/plugins/animsition/css/animsition.min.css';
+import './../../vendor/css/hamburgers.min.css';
 import './../../vendor/css/util.css';
 import './../../vendor/plugins/own-carousel/assets/owl.carousel.min.css';
 import './../../vendor/plugins/own-carousel/assets/owl.theme.default.min.css';
