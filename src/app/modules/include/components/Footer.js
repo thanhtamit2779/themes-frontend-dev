@@ -309,24 +309,17 @@ class Footer extends React.Component {
                   <p>
                       <span className="tit-name"><i className="fa fa-map-marker"></i> </span>
                       <span className="tit-contain">Address 1</span>
-                    </p>
+                  </p>
 
-                    <p>
-                      <span className="tit-name"><i className="fa fa-phone"></i> </span>
-                      <span className="tit-contain">123456789</span>
-                    </p>  
+                  <p>
+                    <span className="tit-name"><i className="fa fa-phone"></i> </span>
+                    <span className="tit-contain">123456789</span>
+                  </p>  
 
-                    <p>
-                      <span className="tit-name"><i className="fa fa-envelope"></i> </span>
-                      <span className="tit-contain">thanhtam.it2779@gmail.com</span>
-                    </p>    
-                  <div className="flex-m p-t-30">
-                    <a href="#" className="fs-18 color1 p-r-20 fa fa-facebook" />
-                    <a href="#" className="fs-18 color1 p-r-20 fa fa-instagram" />
-                    <a href="#" className="fs-18 color1 p-r-20 fa fa-pinterest-p" />
-                    <a href="#" className="fs-18 color1 p-r-20 fa fa-snapchat-ghost" />
-                    <a href="#" className="fs-18 color1 p-r-20 fa fa-youtube-play" />
-                  </div>
+                  <p>
+                    <span className="tit-name"><i className="fa fa-envelope"></i> </span>
+                    <span className="tit-contain">thanhtam.it2779@gmail.com</span>
+                  </p>    
                 </div>
               </div>
               <div className="col-sm-3 col-xs-12">
