@@ -8,6 +8,7 @@ import * as _ from 'lodash';
 import {Table, Message} from 'semantic-ui-react';
 import NumberFormat from 'react-number-format';
 import { listCart, deleteCart } from './../actions/index';
+import { Helmet } from 'react-helmet';
 
 import {
     Row,
@@ -82,63 +83,68 @@ class ViewCart extends Component {
         const carts          = this.props.items;
                 
         return (
-            <section className="main">
-                <Grid>
-                    <Row>
-                        <Col sm={12} xs={12}>
-                            <div className="bread-crumb bgwhite flex-w p-t-30">
-                                <NavLink to='/'>
-                                    Trang chủ
-                                    <i className="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"/>
-                                </NavLink>
+            <React.Fragment>
+                <Helmet>
+                        <title>GIỎ HÀNG - KHO THEME 2017</title>
+                </Helmet>
+                <section className="main">
+                    <Grid>
+                        <Row>
+                            <Col sm={12} xs={12}>
+                                <div className="bread-crumb bgwhite flex-w p-t-30">
+                                    <NavLink to='/'>
+                                        Trang chủ
+                                        <i className="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"/>
+                                    </NavLink>
 
-                                <span>
-                                    Giỏ hàng
-                                </span>
-                            </div>
-                        </Col>
-                    </Row>
-
-                    <Row className="p-t-30 p-b-25">
-                        <Col sm={8} xs={12}>
-                            { _.isEmpty(carts) ? 
-                                <Message negative>
-                                    <Message.Header>Bạn chưa có sản phẩm nào trong giỏ hàng</Message.Header>
-                                    <p>Click vào <NavLink to="/">đây</NavLink> để mua hàng</p>
-                                </Message> :  
-                                <Form horizontal method="post" id="view-cart" onSubmit={this.handleSubmit} encType="multipart/form-data" acceptCharset="utf-8" >
-                                    <Table basic='very'>
-                                        <Table.Header>
-                                            <Table.Row>
-                                                <Table.HeaderCell colSpan='2'>Bạn có { this.calTotalCart(carts) } sản phẩm</Table.HeaderCell>
-                                                <Table.HeaderCell>Đơn giá</Table.HeaderCell>
-                                                <Table.HeaderCell>Số lượng</Table.HeaderCell>
-                                                <Table.HeaderCell>Thành tiền</Table.HeaderCell>
-                                            </Table.Row>
-                                        </Table.Header>
-                                        <Table.Body>
-                                            <CartList carts={carts} handleDeleteCart={this.handleDeleteCart}/>
-                                        </Table.Body>
-                                    </Table>
-                                </Form>
-                            }
-                        </Col>
-                        <Col sm={4} xs={12}>
-                            { _.isEmpty(carts) ? '' : 
-                            <div className="info-cart card">
-                                <h2>THÔNG TIN ĐƠN HÀNG</h2>
-                                <p><span className="pull-left">Tạm tính ({ this.calTotalCart(carts)} sản phẩm)</span><span className="pull-right"><NumberFormat value={ this.calTotalPrice(carts) } displayType={'text'} thousandSeparator={true}/> VNĐ</span></p>
-                                <p><span className="pull-left">Tổng cộng</span><span className="pull-right"><NumberFormat value={ this.calTotalPrice(carts) } displayType={'text'} thousandSeparator={true}/> VNĐ</span></p>
-                                <div className="text-center">
-                                    <NavLink to="/" className="btn btn-xs btn-success pull-left">Tiếp tục mua hàng</NavLink>
-                                    <NavLink to='/thanh-toan' className="btn btn-xs btn-success pull-right">Thanh toán</NavLink>
+                                    <span>
+                                        Giỏ hàng
+                                    </span>
                                 </div>
-                            </div>
-                            }
-                        </Col>
-                    </Row>
-                </Grid>
-            </section>
+                            </Col>
+                        </Row>
+
+                        <Row className="p-t-30 p-b-25">
+                            <Col sm={8} xs={12}>
+                                { _.isEmpty(carts) ? 
+                                    <Message negative>
+                                        <Message.Header>Bạn chưa có sản phẩm nào trong giỏ hàng</Message.Header>
+                                        <p>Click vào <NavLink to="/">đây</NavLink> để mua hàng</p>
+                                    </Message> :  
+                                    <Form horizontal method="post" id="view-cart" onSubmit={this.handleSubmit} encType="multipart/form-data" acceptCharset="utf-8" >
+                                        <Table basic='very'>
+                                            <Table.Header>
+                                                <Table.Row>
+                                                    <Table.HeaderCell colSpan='2'>Bạn có { this.calTotalCart(carts) } sản phẩm</Table.HeaderCell>
+                                                    <Table.HeaderCell>Đơn giá</Table.HeaderCell>
+                                                    <Table.HeaderCell>Số lượng</Table.HeaderCell>
+                                                    <Table.HeaderCell>Thành tiền</Table.HeaderCell>
+                                                </Table.Row>
+                                            </Table.Header>
+                                            <Table.Body>
+                                                <CartList carts={carts} handleDeleteCart={this.handleDeleteCart}/>
+                                            </Table.Body>
+                                        </Table>
+                                    </Form>
+                                }
+                            </Col>
+                            <Col sm={4} xs={12}>
+                                { _.isEmpty(carts) ? '' : 
+                                <div className="info-cart card">
+                                    <h2>THÔNG TIN ĐƠN HÀNG</h2>
+                                    <p><span className="pull-left">Tạm tính ({ this.calTotalCart(carts)} sản phẩm)</span><span className="pull-right"><NumberFormat value={ this.calTotalPrice(carts) } displayType={'text'} thousandSeparator={true}/> VNĐ</span></p>
+                                    <p><span className="pull-left">Tổng cộng</span><span className="pull-right"><NumberFormat value={ this.calTotalPrice(carts) } displayType={'text'} thousandSeparator={true}/> VNĐ</span></p>
+                                    <div className="text-center">
+                                        <NavLink to="/" className="btn btn-xs btn-success pull-left">Tiếp tục mua hàng</NavLink>
+                                        <NavLink to='/thanh-toan' className="btn btn-xs btn-success pull-right">Thanh toán</NavLink>
+                                    </div>
+                                </div>
+                                }
+                            </Col>
+                        </Row>
+                    </Grid>
+                </section>
+            </React.Fragment>
         )
     }
 }
