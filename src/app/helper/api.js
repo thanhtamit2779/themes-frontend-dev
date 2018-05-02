@@ -11,13 +11,18 @@ export default function request_api(url, data = null, method = 'post') {
         data: qs.stringify(data),
         baseURL: API.url,
         proxy: {
-            host: 'localhost',
-            port: 80,
+            host    : 'ftp.freevnn.com',
+            auth    : {
+                username: 'freev_13645580',
+                password: '27071994'
+            }
         }, 
         responseType: 'json',
         headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept'                        : 'application/json',
+            //'Access-Control-Allow-Origin'   : '*',
+            'Content-Type'                  : 'application/x-www-form-urlencoded',
+            'X-Requested-With'              : 'XMLHttpRequest'
         }
     }).catch(function (error) { 
         console.log(error); 
