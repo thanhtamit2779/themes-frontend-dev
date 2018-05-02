@@ -14,6 +14,7 @@ import {NavLink} from 'react-router-dom';
 import ProductList from './../components/ProductList';
 
 import Pagination from "react-js-pagination";
+import { Helmet } from 'react-helmet';
 
 const total_record = 8;
 const page         = 1;
@@ -87,30 +88,36 @@ class ProductCategoryContainer extends Component {
         let term_name = _.get(term, 'term_name');
 
         return (
-            <section className="main">
-                <Grid>
-                    <Row>
-                        <Col sm={12} xs={12}>
-                            <div className="bread-crumb bgwhite flex-w p-t-30">
-                                <NavLink to='/'>
-                                    Trang chủ
-                                    <i className="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"/>
-                                </NavLink>
+            <React.Fragment>
+                <Helmet>
+                    <title>{ `${term_name} - KHO THEME 2018`}</title>
+                </Helmet>
 
-                                <span>
-                                    { term_name }
-                                </span>
-                            </div>
-                        </Col>
-                    </Row>
-                </Grid>  
-                <Grid>  
-                    <Row className="p-t-30 p-b-25">
-                        <ProductList posts={posts} col="col-sm-3 col-xs-6"/>
-                    </Row>
-                    { pagination }
-                </Grid>
-            </section>
+                <section className="main">
+                    <Grid>
+                        <Row>
+                            <Col sm={12} xs={12}>
+                                <div className="bread-crumb bgwhite flex-w p-t-30">
+                                    <NavLink to='/'>
+                                        Trang chủ
+                                        <i className="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"/>
+                                    </NavLink>
+
+                                    <span>
+                                        { term_name }
+                                    </span>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Grid>  
+                    <Grid>  
+                        <Row className="p-t-30 p-b-25">
+                            <ProductList posts={posts} col="col-sm-3 col-xs-6"/>
+                        </Row>
+                        { pagination }
+                    </Grid>
+                </section>
+            </React.Fragment>
         )
     }
 }
