@@ -1,4 +1,5 @@
 import axios from 'axios'; 
+import fetch from 'cross-fetch';
 import qs from 'qs'; 
 
 // CONFIG
@@ -10,21 +11,20 @@ export default function request_api(url, data = null, method = 'post') {
         url: url, 
         data: qs.stringify(data),
         baseURL: API.url,
-        proxy: {
-            host    : 'ftp.freevnn.com',
-            auth    : {
-                username: 'freev_13645580',
-                password: '27071994'
-            }
-        }, 
+        timeout: 1000,
+
+        withCredentials: false, // default
         responseType: 'json',
+        responseEncoding: 'utf8', // default
         headers: {
             'Accept'                        : 'application/json',
             //'Access-Control-Allow-Origin'   : '*',
             'Content-Type'                  : 'application/x-www-form-urlencoded',
-            'X-Requested-With'              : 'XMLHttpRequest'
+            // 'X-Requested-With'              : 'XMLHttpRequest',
+            // 'X-Custom-Header': 'foobar'
         }
     }).catch(function (error) { 
         console.log(error); 
     }); 
 }
+
